@@ -55,6 +55,26 @@ Three models were compared under class-imbalance handling (`class_weight`, thres
 
 Artifacts: `fintech_credit_model.pkl` (model), `fintech_scaler.pkl` (StandardScaler).
 
+### Feature Importance
+
+| Feature | Importance |
+|---|---|
+| `TotalTimesLate` | 0.326 |
+| `EverSeriouslyLate` | 0.163 |
+| `NumberOfTime30-59DaysPastDueNotWorse` | 0.163 |
+| `RevolvingUtilizationOfUnsecuredLines` | 0.151 |
+| `NumberOfTimes90DaysLate` | 0.049 |
+| `NumberOfTime60-89DaysPastDueNotWorse` | 0.046 |
+| `NumberRealEstateLoansOrLines` | 0.035 |
+| `age` | 0.020 |
+| `NumberOfOpenCreditLinesAndLoans` | 0.017 |
+| `DebtRatio` | 0.013 |
+| `MonthlyIncome` | 0.012 |
+| `IncomePerDependent` | 0.010 |
+| `NumberOfDependents` | 0.007 |
+
+The two engineered features are the strongest predictors in the model — `TotalTimesLate` alone accounts for ~33% of the model's total importance, and `EverSeriouslyLate` ties for second. Together with `NumberOfTime30-59DaysPastDueNotWorse` and `RevolvingUtilizationOfUnsecuredLines`, the top four features make up roughly 80% of the model's decision-making — consistent with the domain intuition that past repayment behavior is the strongest signal for future default. Income-related features (`MonthlyIncome`, `IncomePerDependent`, `NumberOfDependents`) contribute comparatively little.
+
 ## API
 
 ### `POST /predict`
